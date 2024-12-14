@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 const Hero = () => {
   return (
     <div className="text-center py-20 px-4">
-      <h1 className="text-5xl md:text-6xl font-bold max-w-4xl mx-auto leading-tight mb-4">
+      <h1 className="text-5xl md:text-6xl max-w-4xl mx-auto leading-tight mb-4">
         We are a Next-Generation Cybersecurity Firm
       </h1>
       <p className="text-gray-600 mb-8">
