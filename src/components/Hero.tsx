@@ -19,7 +19,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-6xl max-w-4xl mx-auto leading-tight mb-6 text-white font-bold">
-          San Francisco's Premier Cloud Security Community
+          Cloud Security Alliance San Francisco Chapter
         </h1>
         <p className="text-xl mb-8 max-w-2xl mx-auto text-blue-50">
           Join industry leaders and practitioners in shaping the future of cloud security
