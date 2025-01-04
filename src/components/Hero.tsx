@@ -13,7 +13,7 @@ const Hero = () => {
           backgroundPosition: "center"
         }}
       >
-        <div className="absolute inset-0 bg-purple-900/70" />
+        <div className="absolute inset-0 bg-blue-900/70" />
       </div>
 
       {/* Content */}
@@ -22,7 +22,7 @@ const Hero = () => {
           <h1 className="text-2xl md:text-3xl max-w-4xl mx-auto leading-tight mb-6 text-white whitespace-nowrap">
             Cloud Security Alliance San Francisco Chapter
           </h1>
-          <p className="text-xl mb-12 max-w-2xl mx-auto text-purple-50">
+          <p className="text-xl mb-12 max-w-2xl mx-auto text-blue-50">
             Join industry leaders and practitioners in shaping the future of cloud security
           </p>
         </div>
@@ -37,7 +37,7 @@ const Hero = () => {
           ].map((stat, index) => (
             <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-6 text-center">
               <div className="text-3xl text-white mb-2">{stat.number}</div>
-              <p className="text-purple-50 text-sm">{stat.label}</p>
+              <p className="text-blue-50 text-sm">{stat.label}</p>
             </Card>
           ))}
         </div>
@@ -53,7 +53,7 @@ const Hero = () => {
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
                 <item.icon className="w-6 h-6 text-white" />
               </div>
-              <p className="text-purple-50">{item.text}</p>
+              <p className="text-blue-50">{item.text}</p>
             </div>
           ))}
         </div>
