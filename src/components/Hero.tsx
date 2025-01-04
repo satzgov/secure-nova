@@ -16,6 +16,15 @@ const Hero = () => {
         <div className="absolute inset-0 bg-blue-900/70" />
       </div>
 
+      {/* Excellence Badge */}
+      <div className="absolute top-8 right-8 z-20 w-32 h-32 md:w-40 md:h-40">
+        <img 
+          src="/lovable-uploads/227c181b-b166-4afa-9575-369847e8aaa7.png" 
+          alt="CSA Chapter of Excellence"
+          className="w-full h-full object-contain animate-pulse"
+        />
+      </div>
+
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         <div className="text-center">
@@ -25,21 +34,6 @@ const Hero = () => {
           <p className="text-xl mb-12 max-w-2xl mx-auto text-blue-50">
             Join industry leaders and practitioners in shaping the future of cloud security
           </p>
-        </div>
-        
-        {/* Metrics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
-          {[
-            { number: "10K+", label: "Page Views" },
-            { number: "5K+", label: "Active Users" },
-            { number: "25+", label: "Sponsors" },
-            { number: "15+", label: "Industry Partners" }
-          ].map((stat, index) => (
-            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-6 text-center">
-              <div className="text-3xl text-white mb-2">{stat.number}</div>
-              <p className="text-blue-50 text-sm">{stat.label}</p>
-            </Card>
-          ))}
         </div>
 
         {/* Features Section */}
