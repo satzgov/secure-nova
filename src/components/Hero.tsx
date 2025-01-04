@@ -18,7 +18,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-        <h1 className="text-3xl md:text-4xl max-w-4xl mx-auto leading-tight mb-6 text-white font-bold">
+        <h1 className="text-4xl md:text-5xl max-w-4xl mx-auto leading-tight mb-6 text-white">
           Cloud Security Alliance San Francisco Chapter
         </h1>
         <p className="text-xl mb-8 max-w-2xl mx-auto text-blue-50">
