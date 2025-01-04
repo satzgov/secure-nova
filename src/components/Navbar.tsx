@@ -3,10 +3,13 @@ import { CloudCog } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-6 px-6 border-b bg-white">
+    <nav className="flex items-center justify-between py-4 px-6 border-b bg-white">
       <div className="flex items-center space-x-3">
-        <CloudCog className="w-8 h-8 text-blue-600" />
-        <span className="font-semibold text-xl text-gray-900">CSA-SFO</span>
+        <img 
+          src="/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png" 
+          alt="CSA San Francisco Chapter Logo" 
+          className="h-12 w-auto"
+        />
       </div>
       
       <div className="hidden md:flex items-center space-x-8">
@@ -16,7 +19,7 @@ const Navbar = () => {
         <a href="#membership" className="nav-link">Membership</a>
       </div>
       
-      <Button className="bg-blue-600 text-white hover:bg-blue-700">
+      <Button className="bg-[#005CB9] text-white hover:bg-[#004a94]">
         Join CSA-SFO
       </Button>
     </nav>
