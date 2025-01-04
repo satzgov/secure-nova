@@ -36,6 +36,21 @@ const Hero = () => {
           </p>
         </div>
 
+        {/* Metrics Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+          {[
+            { number: "10K+", label: "Page Views" },
+            { number: "5K+", label: "Active Users" },
+            { number: "25+", label: "Sponsors" },
+            { number: "15+", label: "Industry Partners" }
+          ].map((stat, index) => (
+            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-6 text-center">
+              <div className="text-3xl text-white mb-2">{stat.number}</div>
+              <p className="text-blue-50 text-sm">{stat.label}</p>
+            </Card>
+          ))}
+        </div>
+
         {/* Features Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
           {[
