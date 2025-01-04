@@ -32,7 +32,7 @@ const Hero = () => {
             Cloud Security Alliance San Francisco Chapter
           </h1>
           <p className="text-xl mb-12 max-w-2xl mx-auto text-blue-50">
-            Join industry leaders and practitioners in shaping the future of cloud security
+            We are a 501(c)3 nonprofit, join industry leaders and practitioners in shaping the future of security
           </p>
         </div>
 
