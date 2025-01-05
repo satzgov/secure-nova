@@ -17,7 +17,7 @@ const Hero = () => {
       </div>
 
       {/* Excellence Badge */}
-      <div className="absolute top-8 right-8 z-20 w-32 h-32 md:w-40 md:h-40">
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20 w-24 h-24 md:w-40 md:h-40">
         <img 
           src="/lovable-uploads/227c181b-b166-4afa-9575-369847e8aaa7.png" 
           alt="CSA Chapter of Excellence"
@@ -28,41 +28,41 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         <div className="text-center">
-          <h1 className="text-2xl md:text-3xl max-w-4xl mx-auto leading-tight mb-6 text-white whitespace-nowrap">
+          <h1 className="text-xl md:text-3xl max-w-4xl mx-auto leading-tight mb-4 md:mb-6 text-white">
             Cloud Security Alliance San Francisco Chapter
           </h1>
-          <p className="text-xl mb-12 max-w-2xl mx-auto text-blue-50">
+          <p className="text-base md:text-xl mb-8 md:mb-12 max-w-2xl mx-auto text-blue-50">
             We are a 501(c)3 nonprofit, join industry leaders and practitioners in shaping the future of security
           </p>
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-12 max-w-3xl mx-auto">
           {[
             { number: "10K+", label: "Page Views" },
             { number: "5K+", label: "Active Users" },
             { number: "25+", label: "Sponsors" },
             { number: "15+", label: "Industry Partners" }
           ].map((stat, index) => (
-            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-3 text-center">
-              <div className="text-2xl text-white mb-1">{stat.number}</div>
-              <p className="text-blue-50 text-xs">{stat.label}</p>
+            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-2 md:p-3 text-center">
+              <div className="text-lg md:text-2xl text-white mb-0.5 md:mb-1">{stat.number}</div>
+              <p className="text-blue-50 text-xs md:text-sm">{stat.label}</p>
             </Card>
           ))}
         </div>
 
         {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-16 max-w-4xl mx-auto">
           {[
             { icon: Shield, text: "Expert-Led Security Guidance" },
             { icon: Users, text: "Vibrant Community Network" },
             { icon: BookOpen, text: "Continuous Learning" }
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                <item.icon className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center mb-2 md:mb-4">
+                <item.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <p className="text-blue-50">{item.text}</p>
+              <p className="text-sm md:text-base text-blue-50">{item.text}</p>
             </div>
           ))}
         </div>
