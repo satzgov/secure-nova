@@ -17,7 +17,7 @@ const Hero = () => {
       </div>
 
       {/* Excellence Badge - Centered and Reduced Size */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20 w-16 h-16 md:w-20 md:h-20">
+      <div className="absolute top-16 md:top-8 left-1/2 transform -translate-x-1/2 z-20 w-12 h-12 md:w-16 md:h-16">
         <img 
           src="/lovable-uploads/227c181b-b166-4afa-9575-369847e8aaa7.png" 
           alt="CSA Chapter of Excellence"
@@ -26,7 +26,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 mt-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 mt-24 md:mt-16">
         <div className="text-center">
           <h1 className="text-xl md:text-3xl max-w-4xl mx-auto leading-tight mb-4 md:mb-6 text-white">
             Cloud Security Alliance San Francisco Chapter

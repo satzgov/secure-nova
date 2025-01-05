@@ -8,7 +8,7 @@ const Navbar = () => {
         <img 
           src="/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png" 
           alt="CSA San Francisco Chapter Logo" 
-          className="h-12 w-auto"
+          className="h-8 md:h-12 w-auto" // Adjusted height for mobile
         />
       </div>
       
@@ -27,12 +27,12 @@ const Navbar = () => {
         <a href="#membership" className="nav-link">Membership</a>
       </div>
       
-      <div className="flex items-center gap-4">
-        <Button className="flex items-center gap-2">
+      <div className="flex items-center gap-2 md:gap-4">
+        <Button size="sm" className="hidden md:flex items-center gap-2">
           <Plus className="w-4 h-4" />
           Donate
         </Button>
-        <Button className="bg-[#005CB9] text-white hover:bg-[#004a94]">
+        <Button size="sm" className="bg-[#005CB9] text-white hover:bg-[#004a94] text-xs md:text-sm">
           Join CSA-SFO
         </Button>
       </div>
