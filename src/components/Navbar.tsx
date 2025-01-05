@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { CloudCog } from "lucide-react";
+import { Home, User, Plus } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -13,15 +13,29 @@ const Navbar = () => {
       </div>
       
       <div className="hidden md:flex items-center space-x-8">
+        <a href="/" className="nav-link flex items-center gap-2">
+          <Home className="w-4 h-4" />
+          Home
+        </a>
+        <a href="#sponsor" className="nav-link flex items-center gap-2">
+          <User className="w-4 h-4" />
+          Sponsor
+        </a>
         <a href="#about" className="nav-link">About</a>
         <a href="#events" className="nav-link">Events</a>
         <a href="#resources" className="nav-link">Resources</a>
         <a href="#membership" className="nav-link">Membership</a>
       </div>
       
-      <Button className="bg-[#005CB9] text-white hover:bg-[#004a94]">
-        Join CSA-SFO
-      </Button>
+      <div className="flex items-center gap-4">
+        <Button className="flex items-center gap-2">
+          <Plus className="w-4 h-4" />
+          Donate
+        </Button>
+        <Button className="bg-[#005CB9] text-white hover:bg-[#004a94]">
+          Join CSA-SFO
+        </Button>
+      </div>
     </nav>
   );
 };

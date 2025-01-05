@@ -16,17 +16,17 @@ const Hero = () => {
         <div className="absolute inset-0 bg-blue-900/70" />
       </div>
 
-      {/* Excellence Badge */}
-      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20 w-24 h-24 md:w-40 md:h-40">
+      {/* Excellence Badge - Centered and Reduced Size */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20 w-16 h-16 md:w-20 md:h-20">
         <img 
           src="/lovable-uploads/227c181b-b166-4afa-9575-369847e8aaa7.png" 
           alt="CSA Chapter of Excellence"
-          className="w-full h-full object-contain animate-pulse"
+          className="w-full h-full object-contain"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 mt-16">
         <div className="text-center">
           <h1 className="text-xl md:text-3xl max-w-4xl mx-auto leading-tight mb-4 md:mb-6 text-white">
             Cloud Security Alliance San Francisco Chapter
