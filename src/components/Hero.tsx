@@ -37,16 +37,16 @@ const Hero = () => {
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-12 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-12 max-w-xl mx-auto">
           {[
             { number: "10K+", label: "Page Views" },
             { number: "5K+", label: "Active Users" },
             { number: "25+", label: "Sponsors" },
             { number: "15+", label: "Industry Partners" }
           ].map((stat, index) => (
-            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-2 md:p-3 text-center">
-              <div className="text-lg md:text-2xl text-white mb-0.5 md:mb-1">{stat.number}</div>
-              <p className="text-blue-50 text-xs md:text-sm">{stat.label}</p>
+            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm p-1.5 md:p-2 text-center">
+              <div className="text-base md:text-lg text-white mb-0.5">{stat.number}</div>
+              <p className="text-blue-50 text-xs">{stat.label}</p>
             </Card>
           ))}
         </div>
