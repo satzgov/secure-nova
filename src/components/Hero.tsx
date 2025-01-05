@@ -31,8 +31,8 @@ const Hero = () => {
           <h1 className="text-xl md:text-3xl max-w-4xl mx-auto leading-tight mb-4 md:mb-6 text-white">
             Cloud Security Alliance San Francisco Chapter
           </h1>
-          <p className="text-base md:text-xl mb-8 md:mb-12 max-w-2xl mx-auto text-blue-50">
-            We are a 501(c)3 nonprofit, join industry leaders and practitioners in shaping the future of security
+          <p className="text-sm md:text-lg mb-8 md:mb-12 max-w-2xl mx-auto text-blue-50">
+            Join our 501(c)(3) nonprofit and collaborate with global industry leaders to shape the future of cybersecurity.
           </p>
         </div>
 
