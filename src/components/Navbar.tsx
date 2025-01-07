@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Home, User, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -8,23 +9,23 @@ const Navbar = () => {
         <img 
           src="/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png" 
           alt="CSA San Francisco Chapter Logo" 
-          className="h-8 md:h-12 w-auto" // Adjusted height for mobile
+          className="h-8 md:h-12 w-auto"
         />
       </div>
       
       <div className="hidden md:flex items-center space-x-8">
-        <a href="/" className="nav-link flex items-center gap-2">
+        <Link to="/" className="nav-link flex items-center gap-2">
           <Home className="w-4 h-4" />
           Home
-        </a>
-        <a href="#sponsor" className="nav-link flex items-center gap-2">
+        </Link>
+        <Link to="#sponsor" className="nav-link flex items-center gap-2">
           <User className="w-4 h-4" />
           Sponsor
-        </a>
-        <a href="#about" className="nav-link">About</a>
-        <a href="#events" className="nav-link">Events</a>
-        <a href="#resources" className="nav-link">Resources</a>
-        <a href="#membership" className="nav-link">Membership</a>
+        </Link>
+        <Link to="/about" className="nav-link">About</Link>
+        <Link to="#events" className="nav-link">Events</Link>
+        <Link to="#resources" className="nav-link">Resources</Link>
+        <Link to="#membership" className="nav-link">Membership</Link>
       </div>
       
       <div className="flex items-center gap-2 md:gap-4">
