@@ -12,7 +12,7 @@ import {
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-4 px-6 border-b bg-white">
+    <nav className="flex items-center justify-between py-4 px-6 border-b bg-white relative">
       <div className="flex items-center space-x-3">
         <img 
           src="/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png" 
@@ -32,7 +32,7 @@ const Navbar = () => {
         </Link>
         <Link to="/about" className="nav-link">About</Link>
         
-        <NavigationMenu>
+        <NavigationMenu className="relative z-50">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="nav-link">
@@ -40,7 +40,7 @@ const Navbar = () => {
                 Events
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid gap-3 p-4 w-[200px]">
+                <div className="grid gap-3 p-4 w-[200px] bg-white">
                   <NavigationMenuLink asChild>
                     <Link 
                       to="/events/upcoming"
