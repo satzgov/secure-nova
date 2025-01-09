@@ -6,19 +6,21 @@ const SponsorPage = () => {
   const sponsorshipTiers = [
     {
       name: "Platinum",
-      price: "$10,000",
+      price: "$2,000",
       benefits: [
+        "Logo Placement: Sponsor's logo will be featured on the CSA chapter meetup welcome slide, in announcements, and the company name will be mentioned at every chapter meetup",
+        "Speaking Opportunity: Includes a company introduction and a dedicated speaking slot",
+        "Social Media Promotion: The logo will be displayed on social media posts promoting the event",
+        "Event Support: Sponsor is responsible for covering the venue, food (snacks or light dinner), and drinks",
         "Premium logo placement on website and all event materials",
         "VIP access to all CSA-SFO events",
-        "Speaking opportunities at major events",
         "Direct engagement with our developer community",
-        "Exclusive workshop hosting opportunities",
         "Featured in our monthly newsletter"
       ]
     },
     {
       name: "Gold",
-      price: "$5,000",
+      price: "$1,000",
       benefits: [
         "Prominent logo placement on website",
         "Access to all CSA-SFO events",
@@ -29,7 +31,7 @@ const SponsorPage = () => {
     },
     {
       name: "Silver",
-      price: "$2,500",
+      price: "$500",
       benefits: [
         "Logo placement on website",
         "Access to select CSA-SFO events",
