@@ -5,6 +5,7 @@ import About from "./pages/About";
 import UpcomingEvents from "./pages/events/UpcomingEvents";
 import PastEvents from "./pages/events/PastEvents";
 import EventDetail from "./pages/events/EventDetail";
+import SponsorPage from "./pages/Sponsors";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -16,10 +17,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
+            <Route path="/sponsor" element={<SponsorPage />} />
             <Route path="/events/upcoming" element={<UpcomingEvents />} />
             <Route path="/events/past" element={<PastEvents />} />
             <Route path="/events/:id" element={<EventDetail />} />
-            {/* Catch all route - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

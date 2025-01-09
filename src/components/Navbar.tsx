@@ -5,7 +5,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
@@ -26,13 +25,13 @@ const Navbar = () => {
           <Home className="w-4 h-4" />
           Home
         </Link>
-        <Link to="#sponsor" className="nav-link flex items-center gap-2">
+        <Link to="/sponsor" className="nav-link flex items-center gap-2">
           <User className="w-4 h-4" />
           Sponsor
         </Link>
         <Link to="/about" className="nav-link">About</Link>
         
-        <NavigationMenu className="relative z-50">
+        <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="nav-link">
