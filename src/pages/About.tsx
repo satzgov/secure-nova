@@ -1,12 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
-import Navbar from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
 
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         {/* Our Team Section */}
