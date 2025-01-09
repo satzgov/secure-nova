@@ -7,6 +7,7 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
@@ -40,28 +41,24 @@ const Navbar = () => {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid gap-3 p-4 w-[200px] bg-white">
-                  <NavigationMenuLink asChild>
-                    <Link 
-                      to="/events/upcoming"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="text-sm font-medium leading-none">Upcoming Events</div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        See what's coming up
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/events/past"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="text-sm font-medium leading-none">Past Events</div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        Browse our previous events
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
+                  <Link 
+                    to="/events/upcoming"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <div className="text-sm font-medium leading-none">Upcoming Events</div>
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                      See what's coming up
+                    </p>
+                  </Link>
+                  <Link
+                    to="/events/past"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <div className="text-sm font-medium leading-none">Past Events</div>
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                      Browse our previous events
+                    </p>
+                  </Link>
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
