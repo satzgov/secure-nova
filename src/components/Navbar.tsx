@@ -1,16 +1,26 @@
 import { Button } from "./ui/button";
-import { Home, User, Plus, Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Home, User, Plus, Calendar, Settings } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const adminId = localStorage.getItem('adminId');
+
+  const handleAdminClick = () => {
+    if (adminId) {
+      navigate('/admin/dashboard');
+    } else {
+      navigate('/admin/login');
+    }
+  };
+
   return (
     <nav className="flex items-center justify-between py-4 px-6 border-b bg-white relative">
       <div className="flex items-center space-x-3">
@@ -67,6 +77,16 @@ const Navbar = () => {
 
         <Link to="#resources" className="nav-link">Resources</Link>
         <Link to="#membership" className="nav-link">Membership</Link>
+        
+        <Button 
+          variant="ghost"
+          size="sm" 
+          onClick={handleAdminClick}
+          className="flex items-center gap-2"
+        >
+          <Settings className="w-4 h-4" />
+          Admin
+        </Button>
       </div>
       
       <div className="flex items-center gap-2 md:gap-4">
