@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Lock, User } from "lucide-react";
@@ -18,46 +17,15 @@ const AdminLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    try {
-      console.log("Attempting login with username:", username);
-      
-      const { data, error } = await supabase.rpc('check_admin_credentials', {
-        p_username: username,
-        p_password: password
-      });
-
-      console.log("Login response:", { data, error });
-
-      if (error) {
-        console.error("Login error:", error);
-        throw error;
-      }
-
-      if (data) {
-        localStorage.setItem('adminId', data);
-        toast({
-          title: "Success",
-          description: "Logged in successfully",
-        });
-        navigate('/admin/dashboard');
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Invalid credentials",
-        });
-      }
-    } catch (error) {
-      console.error("Detailed error:", error);
+    
+    // Temporary: Skip authentication
+    setTimeout(() => {
       toast({
-        variant: "destructive",
-        title: "Error",
-        description: "An error occurred during login",
+        title: "Success",
+        description: "Logged in successfully",
       });
-    } finally {
-      setLoading(false);
-    }
+      navigate('/admin/dashboard');
+    }, 500);
   };
 
   return (

@@ -9,25 +9,6 @@ const Sponsors = () => {
         "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
         "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
       ]
-    },
-    {
-      tier: "Gold",
-      logos: [
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-      ]
-    },
-    {
-      tier: "Silver",
-      logos: [
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-        "/lovable-uploads/d044d806-b2ce-4e62-a1c3-62ef65a1a39b.png",
-      ]
     }
   ];
 
