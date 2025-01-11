@@ -17,12 +17,18 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
+      console.log("Attempting to login with username:", username);
       const { data, error } = await supabase.rpc('check_admin_credentials', {
         p_username: username,
         p_password: password
       });
 
-      if (error) throw error;
+      console.log("Login response:", { data, error });
+
+      if (error) {
+        console.error("Login error:", error);
+        throw error;
+      }
 
       if (data) {
         localStorage.setItem('adminId', data);
@@ -39,10 +45,11 @@ const AdminLogin = () => {
         });
       }
     } catch (error) {
+      console.error("Detailed error:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "An error occurred during login",
+        description: "An error occurred during login. Please check the console for details.",
       });
     } finally {
       setLoading(false);
