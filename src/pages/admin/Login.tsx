@@ -17,10 +17,16 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      console.log("Attempting to login with username:", username);
+      console.log("Attempting login with username:", username);
+      
       const { data, error } = await supabase.rpc('check_admin_credentials', {
         p_username: username,
         p_password: password
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabase.supabaseKey
+        }
       });
 
       console.log("Login response:", { data, error });
