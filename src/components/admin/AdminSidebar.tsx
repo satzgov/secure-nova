@@ -9,32 +9,34 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const menuItems = [
   {
     title: "Sponsors",
-    url: "/admin/sponsors",
+    url: "/admin/dashboard/sponsors",
     icon: Building,
   },
   {
     title: "Team Members",
-    url: "/admin/team",
+    url: "/admin/dashboard/team",
     icon: Users,
   },
   {
     title: "Events",
-    url: "/admin/events",
+    url: "/admin/dashboard/events",
     icon: Calendar,
   },
   {
     title: "Social Media",
-    url: "/admin/social",
+    url: "/admin/dashboard/social",
     icon: Share2,
   },
 ]
 
 export function AdminSidebar() {
+  const location = useLocation()
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -44,7 +46,10 @@ export function AdminSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton 
+                    asChild
+                    isActive={location.pathname === item.url}
+                  >
                     <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
