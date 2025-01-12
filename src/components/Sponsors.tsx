@@ -2,8 +2,18 @@ import { Card } from "./ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+type Sponsor = {
+  id: string;
+  name: string;
+  website: string | null;
+  logo_url: string | null;
+  tier: string;
+  description: string | null;
+  created_at: string;
+};
+
 const Sponsors = () => {
-  const { data: sponsors, isLoading } = useQuery({
+  const { data: sponsors, isLoading } = useQuery<Sponsor[]>({
     queryKey: ['sponsors'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -26,7 +36,7 @@ const Sponsors = () => {
     }
     acc[sponsor.tier].push(sponsor);
     return acc;
-  }, {} as Record<string, typeof sponsors>);
+  }, {} as Record<string, Sponsor[]>);
 
   return (
     <section className="bg-gray-50 py-16">
@@ -41,13 +51,13 @@ const Sponsors = () => {
                   {tierSponsors.map((sponsor) => (
                     <div key={sponsor.id} className="w-32 h-32 p-4 flex items-center justify-center">
                       <a 
-                        href={sponsor.website} 
+                        href={sponsor.website || '#'} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         title={sponsor.name}
                       >
                         <img
-                          src={sponsor.logo_url}
+                          src={sponsor.logo_url || '/placeholder.svg'}
                           alt={`${sponsor.name} logo`}
                           className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                         />
