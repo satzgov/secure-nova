@@ -24,7 +24,7 @@ function App() {
             <Route path="/events/past" element={<PastEvents />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/dashboard/*" element={<AdminDashboard />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

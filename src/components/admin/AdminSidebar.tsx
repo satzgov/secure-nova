@@ -14,22 +14,22 @@ import { Link, useLocation } from "react-router-dom"
 const menuItems = [
   {
     title: "Add Sponsors",
-    url: "/admin/dashboard/sponsors",
+    url: "sponsors",
     icon: Building,
   },
   {
     title: "Team Members",
-    url: "/admin/dashboard/team",
+    url: "team",
     icon: Users,
   },
   {
     title: "Events",
-    url: "/admin/dashboard/events",
+    url: "events",
     icon: Calendar,
   },
   {
     title: "Social Media",
-    url: "/admin/dashboard/social",
+    url: "social",
     icon: Share2,
   },
 ]
@@ -48,7 +48,7 @@ export function AdminSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
                     asChild
-                    isActive={location.pathname === item.url}
+                    isActive={location.pathname === `/admin/dashboard/${item.url}`}
                   >
                     <Link to={item.url}>
                       <item.icon />
