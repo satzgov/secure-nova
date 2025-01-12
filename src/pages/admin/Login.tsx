@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Lock, User } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -17,15 +18,39 @@ const AdminLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Temporary: Skip authentication
-    setTimeout(() => {
-      toast({
-        title: "Success",
-        description: "Logged in successfully",
+
+    try {
+      const { data, error } = await supabase.rpc('check_admin_credentials', {
+        p_username: username,
+        p_password: password
       });
-      navigate('/admin/dashboard');
-    }, 500);
+
+      if (error) throw error;
+
+      if (data) {
+        // Store the admin ID in localStorage
+        localStorage.setItem('adminId', data);
+        toast({
+          title: "Success",
+          description: "Logged in successfully",
+        });
+        navigate('/admin/dashboard');
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Invalid credentials",
+        });
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "An error occurred during login",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
