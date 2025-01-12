@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { supabase } from "@/integrations/supabase/client"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const sponsorSchema = z.object({
   name: z.string().min(2, {
@@ -33,6 +35,24 @@ const sponsorSchema = z.object({
 })
 
 export function SponsorsForm() {
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  
+  // Check authentication on component mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast.error("Please login to access this page");
+        navigate("/admin/login");
+        return;
+      }
+      setIsLoading(false);
+    };
+    
+    checkAuth();
+  }, [navigate]);
+
   const form = useForm<z.infer<typeof sponsorSchema>>({
     resolver: zodResolver(sponsorSchema),
     defaultValues: {
@@ -46,6 +66,14 @@ export function SponsorsForm() {
 
   async function onSubmit(values: z.infer<typeof sponsorSchema>) {
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        toast.error("Please login to add sponsors");
+        navigate("/admin/login");
+        return;
+      }
+
       const { error } = await supabase
         .from('sponsors')
         .insert([values])
@@ -54,10 +82,14 @@ export function SponsorsForm() {
 
       toast.success("Sponsor added successfully!")
       form.reset()
-    } catch (error) {
-      toast.error("Failed to add sponsor. Please try again.")
+    } catch (error: any) {
+      toast.error(error.message || "Failed to add sponsor. Please try again.")
       console.error('Error adding sponsor:', error)
     }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
