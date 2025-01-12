@@ -13,7 +13,7 @@ import { Link, useLocation } from "react-router-dom"
 
 const menuItems = [
   {
-    title: "Sponsors",
+    title: "Add Sponsors",
     url: "/admin/dashboard/sponsors",
     icon: Building,
   },

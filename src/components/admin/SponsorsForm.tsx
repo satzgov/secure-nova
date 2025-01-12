@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
+import { supabase } from "@/integrations/supabase/client"
 
 const sponsorSchema = z.object({
   name: z.string().min(2, {
@@ -22,8 +23,8 @@ const sponsorSchema = z.object({
   website: z.string().url({
     message: "Please enter a valid URL.",
   }),
-  logo: z.string().min(1, {
-    message: "Please upload a logo.",
+  logo_url: z.string().min(1, {
+    message: "Please provide a logo URL.",
   }),
   tier: z.enum(["Platinum", "Gold", "Silver"], {
     required_error: "Please select a tier.",
@@ -37,15 +38,26 @@ export function SponsorsForm() {
     defaultValues: {
       name: "",
       website: "",
-      logo: "",
+      logo_url: "",
       tier: "Platinum",
       description: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof sponsorSchema>) {
-    toast.success("Sponsor added successfully!")
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof sponsorSchema>) {
+    try {
+      const { error } = await supabase
+        .from('sponsors')
+        .insert([values])
+      
+      if (error) throw error
+
+      toast.success("Sponsor added successfully!")
+      form.reset()
+    } catch (error) {
+      toast.error("Failed to add sponsor. Please try again.")
+      console.error('Error adding sponsor:', error)
+    }
   }
 
   return (
@@ -83,15 +95,15 @@ export function SponsorsForm() {
 
           <FormField
             control={form.control}
-            name="logo"
+            name="logo_url"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Logo URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="Upload or enter logo URL" {...field} />
+                  <Input placeholder="Enter logo URL" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Please upload a high-resolution logo image
+                  Please provide a URL to the sponsor's logo image
                 </FormDescription>
                 <FormMessage />
               </FormItem>
