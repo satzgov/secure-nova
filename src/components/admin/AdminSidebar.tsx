@@ -39,7 +39,7 @@ export function AdminSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent>
+      <SidebarContent className="mt-16">
         <SidebarGroup>
           <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
