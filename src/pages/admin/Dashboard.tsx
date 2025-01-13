@@ -5,8 +5,11 @@ import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { SponsorsForm } from "@/components/admin/SponsorsForm";
 import { TeamMembersForm } from "@/components/admin/TeamMembersForm";
 import { EventsForm } from "@/components/admin/EventsForm";
+import { EventsList } from "@/components/admin/EventsList";
 import { SocialMediaForm } from "@/components/admin/SocialMediaForm";
 import { Routes, Route } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -36,7 +39,17 @@ const AdminDashboard = () => {
           <Routes>
             <Route path="/sponsors" element={<SponsorsForm />} />
             <Route path="/team" element={<TeamMembersForm />} />
-            <Route path="/events" element={<EventsForm />} />
+            <Route path="/events" element={
+              <>
+                <div className="mb-6">
+                  <Button asChild>
+                    <Link to="/admin/dashboard/events/new">Add New Event</Link>
+                  </Button>
+                </div>
+                <EventsList />
+              </>
+            } />
+            <Route path="/events/new" element={<EventsForm />} />
             <Route path="/social" element={<SocialMediaForm />} />
             <Route path="/" element={
               <div className="text-2xl font-bold">
