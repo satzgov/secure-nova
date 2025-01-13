@@ -20,15 +20,17 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.rpc('check_admin_credentials', {
-        p_username: username,
-        p_password: password
-      });
+      const { data, error } = await supabase
+        .rpc('check_admin_credentials', {
+          p_username: username,
+          p_password: password
+        });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
       if (data) {
-        // Store the admin ID in localStorage
         localStorage.setItem('adminId', data);
         toast({
           title: "Success",
@@ -43,6 +45,7 @@ const AdminLogin = () => {
         });
       }
     } catch (error: any) {
+      console.error('Login error:', error);
       toast({
         variant: "destructive",
         title: "Error",
