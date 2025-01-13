@@ -48,7 +48,7 @@ export function AdminSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
                     asChild
-                    isActive={location.pathname === item.url}
+                    isActive={location.pathname.endsWith(item.url.split('/').pop() || '')}
                   >
                     <Link to={item.url}>
                       <item.icon />
