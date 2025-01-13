@@ -73,25 +73,27 @@ const EventDetail = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      {/* Banner Image */}
-      {event.banner_image && (
-        <div className="relative h-[400px] w-full">
+      {/* Banner Image with Title */}
+      <div className="relative h-[400px] w-full">
+        {event.banner_image ? (
           <img 
             src={event.banner_image} 
             alt={event.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <h1 className="text-4xl font-bold mb-2">{event.title}</h1>
-            <div className="flex items-center gap-4">
-              <span>{new Date(event.start_date).toLocaleDateString()}</span>
-              <span>•</span>
-              <span>{event.location}</span>
-            </div>
+        ) : (
+          <div className="w-full h-full bg-gray-200" />
+        )}
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+          <h1 className="text-4xl font-bold mb-2">{event.title}</h1>
+          <div className="flex items-center gap-4">
+            <span>{new Date(event.start_date).toLocaleDateString()}</span>
+            <span>•</span>
+            <span>{event.location}</span>
           </div>
         </div>
-      )}
+      </div>
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -131,7 +133,6 @@ const EventDetail = () => {
             <section className="bg-white rounded-lg p-6 shadow-sm">
               <h2 className="text-2xl font-semibold mb-4">Location</h2>
               <p className="text-gray-600 mb-4">{event.address}</p>
-              {/* Map will be added in the next iteration */}
             </section>
           </div>
 
