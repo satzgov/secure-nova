@@ -119,6 +119,40 @@ export function TeamMembersForm() {
 
   return (
     <div className="space-y-8">
+      <div className="p-6">
+        <h2 className="text-2xl font-bold mb-6">Team Members List</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {teamMembers?.map((member) => (
+            <Card key={member.id} className="overflow-hidden">
+              <div className="aspect-[4/3] relative">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-muted-foreground">{member.position}</p>
+                <p className="text-sm mt-2">{member.bio}</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Category: {member.category}
+                </p>
+              </CardContent>
+              <CardFooter className="flex justify-end gap-2 p-4">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => deleteMutation.mutate(member.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
+
       <div className="p-6 max-w-2xl mx-auto">
         <h2 className="text-2xl font-bold mb-6">Add New Team Member</h2>
         <Form {...form}>
@@ -210,40 +244,6 @@ export function TeamMembersForm() {
             <Button type="submit">Add Team Member</Button>
           </form>
         </Form>
-      </div>
-
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-6">Team Members List</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teamMembers?.map((member) => (
-            <Card key={member.id} className="overflow-hidden">
-              <div className="aspect-[4/3] relative">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.position}</p>
-                <p className="text-sm mt-2">{member.bio}</p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Category: {member.category}
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-end gap-2 p-4">
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => deleteMutation.mutate(member.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
       </div>
     </div>
   )
