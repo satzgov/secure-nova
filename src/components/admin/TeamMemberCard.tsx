@@ -1,15 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Pencil, Trash2 } from "lucide-react"
-
-type TeamMember = {
-  id: string
-  name: string
-  position: string
-  image: string
-  bio: string | null
-  category: string
-}
+import { TeamMember } from "./TeamMembersForm"
 
 interface TeamMemberCardProps {
   member: TeamMember

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { TeamMember, TeamMemberCategory } from "./TeamMembersForm"
 
 const teamMemberSchema = z.object({
   name: z.string().min(2, {
@@ -25,7 +26,7 @@ const teamMemberSchema = z.object({
     message: "Please upload an image.",
   }),
   bio: z.string().optional(),
-  category: z.enum(["leadership", "advisory", "events", "social"], {
+  category: z.enum(["leadership", "advisory", "events", "social"] as const, {
     required_error: "Please select a team category.",
   }),
 })
@@ -34,7 +35,7 @@ type TeamMemberFormData = z.infer<typeof teamMemberSchema>
 
 interface AddTeamMemberFormProps {
   onSubmit: (data: TeamMemberFormData) => void
-  initialData?: TeamMemberFormData
+  initialData?: Omit<TeamMember, 'id'>
 }
 
 export function AddTeamMemberForm({ onSubmit, initialData }: AddTeamMemberFormProps) {

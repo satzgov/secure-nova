@@ -7,13 +7,15 @@ import { AddTeamMemberForm } from "./AddTeamMemberForm"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 
-type TeamMember = {
+export type TeamMemberCategory = "leadership" | "advisory" | "events" | "social"
+
+export type TeamMember = {
   id: string
   name: string
   position: string
   image: string
   bio: string | null
-  category: string
+  category: TeamMemberCategory
 }
 
 export function TeamMembersForm() {
