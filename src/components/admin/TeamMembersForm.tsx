@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { supabase } from "@/integrations/supabase/client"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
@@ -6,6 +6,7 @@ import { TeamMemberCard } from "./TeamMemberCard"
 import { AddTeamMemberForm } from "./AddTeamMemberForm"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export type TeamMemberCategory = "leadership" | "advisory" | "events" | "social"
 
@@ -22,6 +23,30 @@ export function TeamMembersForm() {
   const [isAddingMember, setIsAddingMember] = useState(false)
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null)
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        toast.error("Please log in to access this page")
+        navigate("/admin/login")
+      }
+    }
+    checkAuth()
+  }, [navigate])
+
+  // Subscribe to auth changes
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT') {
+        navigate("/admin/login")
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [navigate])
 
   // Fetch team members
   const { data: teamMembers, isLoading } = useQuery({
@@ -32,7 +57,10 @@ export function TeamMembersForm() {
         .select('*')
         .order('created_at', { ascending: false })
       
-      if (error) throw error
+      if (error) {
+        toast.error("Failed to fetch team members: " + error.message)
+        throw error
+      }
       return data as TeamMember[]
     },
   })
@@ -40,6 +68,11 @@ export function TeamMembersForm() {
   // Add team member
   const addMutation = useMutation({
     mutationFn: async (values: Omit<TeamMember, "id">) => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        throw new Error("Not authenticated")
+      }
+
       const { data, error } = await supabase
         .from('team_members')
         .insert([values])
@@ -62,6 +95,11 @@ export function TeamMembersForm() {
   // Update team member
   const updateMutation = useMutation({
     mutationFn: async ({ id, ...values }: TeamMember) => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        throw new Error("Not authenticated")
+      }
+
       const { data, error } = await supabase
         .from('team_members')
         .update(values)
@@ -85,6 +123,11 @@ export function TeamMembersForm() {
   // Delete team member
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        throw new Error("Not authenticated")
+      }
+
       const { error } = await supabase
         .from('team_members')
         .delete()
