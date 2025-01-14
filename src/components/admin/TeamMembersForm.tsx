@@ -25,17 +25,17 @@ export function TeamMembersForm() {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
-  // Check authentication status
+  // Check authentication status only once on component mount
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
+      if (!session?.user?.id) {
         toast.error("Please log in to access this page")
         navigate("/admin/login")
       }
     }
     checkAuth()
-  }, [navigate])
+  }, [])
 
   // Subscribe to auth changes
   useEffect(() => {
@@ -69,7 +69,7 @@ export function TeamMembersForm() {
   const addMutation = useMutation({
     mutationFn: async (values: Omit<TeamMember, "id">) => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
+      if (!session?.user?.id) {
         throw new Error("Not authenticated")
       }
 
@@ -88,7 +88,11 @@ export function TeamMembersForm() {
       setIsAddingMember(false)
     },
     onError: (error) => {
-      toast.error("Failed to add team member: " + error.message)
+      if (error.message === "Not authenticated") {
+        navigate("/admin/login")
+      } else {
+        toast.error("Failed to add team member: " + error.message)
+      }
     },
   })
 
@@ -96,7 +100,7 @@ export function TeamMembersForm() {
   const updateMutation = useMutation({
     mutationFn: async ({ id, ...values }: TeamMember) => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
+      if (!session?.user?.id) {
         throw new Error("Not authenticated")
       }
 
@@ -116,7 +120,11 @@ export function TeamMembersForm() {
       setEditingMember(null)
     },
     onError: (error) => {
-      toast.error("Failed to update team member: " + error.message)
+      if (error.message === "Not authenticated") {
+        navigate("/admin/login")
+      } else {
+        toast.error("Failed to update team member: " + error.message)
+      }
     },
   })
 
@@ -124,7 +132,7 @@ export function TeamMembersForm() {
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
+      if (!session?.user?.id) {
         throw new Error("Not authenticated")
       }
 
@@ -140,7 +148,11 @@ export function TeamMembersForm() {
       toast.success("Team member deleted successfully!")
     },
     onError: (error) => {
-      toast.error("Failed to delete team member: " + error.message)
+      if (error.message === "Not authenticated") {
+        navigate("/admin/login")
+      } else {
+        toast.error("Failed to delete team member: " + error.message)
+      }
     },
   })
 
