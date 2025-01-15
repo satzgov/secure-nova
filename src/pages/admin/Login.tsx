@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,27 +15,43 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  useEffect(() => {
+    // Check if user is already authenticated
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user?.id) {
+        navigate('/admin/dashboard');
+      }
+    };
+    checkSession();
+  }, [navigate]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const { data, error } = await supabase
-        .rpc('check_admin_credentials', {
-          p_username: username,
-          p_password: password
-        });
+      const { data, error } = await supabase.rpc('check_admin_credentials', {
+        p_username: username,
+        p_password: password
+      });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
       if (data) {
-        localStorage.setItem('adminId', data);
+        // Set session using Supabase auth
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email: username,
+          password: password,
+        });
+
+        if (signInError) throw signInError;
+
         toast({
           title: "Success",
           description: "Logged in successfully",
         });
+        
         navigate('/admin/dashboard');
       } else {
         toast({
