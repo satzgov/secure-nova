@@ -10,6 +10,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link, useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { supabase } from "@/integrations/supabase/client"
+import { useNavigate } from "react-router-dom"
+import { toast } from "sonner"
 
 const menuItems = [
   {
@@ -36,6 +40,39 @@ const menuItems = [
 
 export function AdminSidebar() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.user?.id) {
+        navigate("/admin/login")
+      } else {
+        setIsAuthenticated(true)
+      }
+    }
+    checkAuth()
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT') {
+        setIsAuthenticated(false)
+        navigate("/admin/login")
+      } else if (session) {
+        setIsAuthenticated(true)
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [navigate])
+
+  const handleMenuClick = (e: React.MouseEvent, url: string) => {
+    if (!isAuthenticated) {
+      e.preventDefault()
+      toast.error("Please log in to access this page")
+      navigate("/admin/login")
+    }
+  }
 
   return (
     <Sidebar>
@@ -50,7 +87,10 @@ export function AdminSidebar() {
                     asChild
                     isActive={location.pathname.endsWith(item.url.split('/').pop() || '')}
                   >
-                    <Link to={item.url}>
+                    <Link 
+                      to={item.url}
+                      onClick={(e) => handleMenuClick(e, item.url)}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
