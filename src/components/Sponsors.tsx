@@ -22,6 +22,7 @@ const Sponsors = () => {
         .order('tier')
       
       if (error) throw error
+      console.log('Fetched sponsors:', data); // Debug log
       return data
     }
   });
@@ -38,6 +39,13 @@ const Sponsors = () => {
     return acc;
   }, {} as Record<string, Sponsor[]>);
 
+  console.log('Grouped sponsors by tier:', sponsorsByTier); // Debug log
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, sponsorName: string) => {
+    console.error(`Error loading image for sponsor ${sponsorName}:`, e);
+    e.currentTarget.src = '/placeholder.svg';
+  };
+
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-6xl mx-auto px-4">
@@ -48,22 +56,27 @@ const Sponsors = () => {
               <h3 className="text-xl font-semibold text-center text-gray-700">{tier} Sponsors</h3>
               <Card className="p-8 bg-white">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
-                  {tierSponsors.map((sponsor) => (
-                    <div key={sponsor.id} className="w-32 h-32 p-4 flex items-center justify-center">
-                      <a 
-                        href={sponsor.website || '#'} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        title={sponsor.name}
-                      >
-                        <img
-                          src={sponsor.logo_url || '/placeholder.svg'}
-                          alt={`${sponsor.name} logo`}
-                          className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                        />
-                      </a>
-                    </div>
-                  ))}
+                  {tierSponsors.map((sponsor) => {
+                    console.log(`Rendering sponsor ${sponsor.name}:`, sponsor); // Debug log
+                    return (
+                      <div key={sponsor.id} className="w-32 h-32 p-4 flex items-center justify-center">
+                        <a 
+                          href={sponsor.website || '#'} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          title={sponsor.name}
+                          className="w-full h-full flex items-center justify-center"
+                        >
+                          <img
+                            src={sponsor.logo_url || '/placeholder.svg'}
+                            alt={`${sponsor.name} logo`}
+                            className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                            onError={(e) => handleImageError(e, sponsor.name)}
+                          />
+                        </a>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
             </div>
