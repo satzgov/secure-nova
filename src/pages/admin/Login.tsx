@@ -16,14 +16,11 @@ const AdminLogin = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already authenticated
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user?.id) {
-        navigate('/admin/dashboard');
-      }
-    };
-    checkSession();
+    // Check if admin session exists in localStorage
+    const adminId = localStorage.getItem('adminId');
+    if (adminId) {
+      navigate('/admin/dashboard');
+    }
   }, [navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -39,14 +36,9 @@ const AdminLogin = () => {
       if (error) throw error;
 
       if (data) {
-        // Set session using Supabase auth
-        const { error: signInError } = await supabase.auth.signInWithPassword({
-          email: username,
-          password: password,
-        });
-
-        if (signInError) throw signInError;
-
+        // Store admin session
+        localStorage.setItem('adminId', data);
+        
         toast({
           title: "Success",
           description: "Logged in successfully",
