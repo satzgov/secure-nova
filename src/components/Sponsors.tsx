@@ -22,7 +22,7 @@ const Sponsors = () => {
         .order('tier')
       
       if (error) throw error
-      console.log('Fetched sponsors:', data); // Debug log
+      console.log('Fetched sponsors:', data);
       return data
     }
   });
@@ -39,7 +39,7 @@ const Sponsors = () => {
     return acc;
   }, {} as Record<string, Sponsor[]>);
 
-  console.log('Grouped sponsors by tier:', sponsorsByTier); // Debug log
+  console.log('Grouped sponsors by tier:', sponsorsByTier);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, sponsorName: string) => {
     console.error(`Error loading image for sponsor ${sponsorName}:`, e);
@@ -57,9 +57,9 @@ const Sponsors = () => {
               <Card className="p-8 bg-white">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
                   {tierSponsors.map((sponsor) => {
-                    console.log(`Rendering sponsor ${sponsor.name}:`, sponsor); // Debug log
+                    console.log(`Rendering sponsor ${sponsor.name}:`, sponsor);
                     return (
-                      <div key={sponsor.id} className="w-32 h-32 p-4 flex items-center justify-center">
+                      <div key={sponsor.id} className="w-40 h-40 p-4 flex items-center justify-center">
                         <a 
                           href={sponsor.website || '#'} 
                           target="_blank" 
@@ -70,8 +70,9 @@ const Sponsors = () => {
                           <img
                             src={sponsor.logo_url || '/placeholder.svg'}
                             alt={`${sponsor.name} logo`}
-                            className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                            className="max-w-full max-h-full object-contain transition-all duration-300"
                             onError={(e) => handleImageError(e, sponsor.name)}
+                            style={{ imageRendering: 'auto' }}
                           />
                         </a>
                       </div>
