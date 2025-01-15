@@ -20,8 +20,9 @@ const About = () => {
         .from('team_members')
         .select('*')
       
-      if (error) throw error
-      return data as TeamMember[]
+      if (error) throw error;
+      console.log("Team members data:", data); // Debug log
+      return data as TeamMember[];
     },
   });
 
@@ -34,6 +35,11 @@ const About = () => {
   const eventsTeam = teamMembers?.filter(member => member.category === 'events') || [];
   const socialTeam = teamMembers?.filter(member => member.category === 'social') || [];
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, member: TeamMember) => {
+    console.error(`Image failed to load for ${member.name}:`, member.image);
+    e.currentTarget.src = '/placeholder.svg'; // Fallback image
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-8">
@@ -45,11 +51,13 @@ const About = () => {
               {leadershipTeam.map((member) => (
                 <Card key={member.id} className="max-w-sm mx-auto">
                   <CardContent className="p-6">
-                    <div className="aspect-[4/3] mb-4 overflow-hidden rounded-lg">
+                    <div className="aspect-[4/3] mb-4 overflow-hidden rounded-lg relative">
                       <img
-                        src={member.image}
+                        src={`${member.image}`}
                         alt={member.name}
                         className="w-full h-full object-cover"
+                        onError={(e) => handleImageError(e, member)}
+                        onLoad={() => console.log(`Image loaded successfully for ${member.name}: ${member.image}`)}
                       />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
@@ -75,9 +83,10 @@ const About = () => {
                   <CardContent className="p-6">
                     <div className="aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                       <img
-                        src={member.image}
+                        src={`${member.image}`}
                         alt={member.name}
                         className="w-full h-full object-cover"
+                        onError={(e) => handleImageError(e, member)}
                       />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
@@ -103,9 +112,10 @@ const About = () => {
                   <CardContent className="p-6">
                     <div className="aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                       <img
-                        src={member.image}
+                        src={`${member.image}`}
                         alt={member.name}
                         className="w-full h-full object-cover"
+                        onError={(e) => handleImageError(e, member)}
                       />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
@@ -131,9 +141,10 @@ const About = () => {
                   <CardContent className="p-6">
                     <div className="aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                       <img
-                        src={member.image}
+                        src={`${member.image}`}
                         alt={member.name}
                         className="w-full h-full object-cover"
+                        onError={(e) => handleImageError(e, member)}
                       />
                     </div>
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
